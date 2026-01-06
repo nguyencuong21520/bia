@@ -98,20 +98,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const rsvpForm = document.getElementById('rsvp-form');
 
     const toggleRsvpModal = () => {
+        const modalContent = rsvpModal.querySelector('div[class*="bg-\\[\\#fffdf5\\]"]');
+        const mobileDrawer = document.getElementById('mobile-drawer');
+        const drawerBackdrop = document.getElementById('drawer-backdrop');
+        
         if (rsvpModal.classList.contains('hidden')) {
+            // Close mobile drawer if open
+            if (mobileDrawer && mobileDrawer.classList.contains('open')) {
+                mobileDrawer.classList.remove('open');
+                if (drawerBackdrop) drawerBackdrop.classList.remove('open');
+            }
+            
             rsvpModal.classList.remove('hidden');
-            // Small delay to allow display:block to apply before opacity transition
+            rsvpModal.classList.add('flex', 'items-center', 'justify-center');
+            // Prevent body scroll when modal is open
+            document.body.style.overflow = 'hidden';
+            
+            // Small delay to allow display:flex to apply before opacity transition
             setTimeout(() => {
                 rsvpModal.classList.remove('opacity-0');
-                rsvpModal.querySelector('div[class*="transform"]').classList.remove('scale-95');
-                rsvpModal.querySelector('div[class*="transform"]').classList.add('scale-100');
+                if (modalContent) {
+                    modalContent.classList.remove('scale-95');
+                    modalContent.classList.add('scale-100');
+                }
             }, 10);
         } else {
             rsvpModal.classList.add('opacity-0');
-            rsvpModal.querySelector('div[class*="transform"]').classList.remove('scale-100');
-            rsvpModal.querySelector('div[class*="transform"]').classList.add('scale-95');
+            if (modalContent) {
+                modalContent.classList.remove('scale-100');
+                modalContent.classList.add('scale-95');
+            }
+            // Restore body scroll
+            document.body.style.overflow = '';
             setTimeout(() => {
                 rsvpModal.classList.add('hidden');
+                rsvpModal.classList.remove('flex', 'items-center', 'justify-center');
             }, 300); // Wait for transition
         }
     };
@@ -136,28 +157,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Music Player Logic
     const musicToggle = document.getElementById('music-toggle');
+    const musicToggleMobile = document.getElementById('music-toggle-mobile');
     const bgMusic = document.getElementById('bg-music');
-    const musicIcon = musicToggle.querySelector('span');
+    const musicIcon = document.getElementById('music-icon');
+    const musicIconMobile = document.getElementById('music-icon-mobile');
+    const musicTextMobile = document.getElementById('music-text-mobile');
     const musicIndicator = document.getElementById('music-indicator');
+    const musicIndicatorMobile = document.getElementById('music-indicator-mobile');
     let isPlaying = false;
 
+    const toggleMusic = () => {
+        if (isPlaying) {
+            bgMusic.pause();
+            if (musicIcon) musicIcon.classList.remove('animate-spin-slow');
+            if (musicIconMobile) musicIconMobile.classList.remove('animate-spin-slow');
+            if (musicIndicator) musicIndicator.classList.add('hidden');
+            if (musicIndicatorMobile) musicIndicatorMobile.classList.add('hidden');
+            if (musicTextMobile) musicTextMobile.textContent = 'Phát nhạc';
+            isPlaying = false;
+        } else {
+            bgMusic.play().then(() => {
+                if (musicIcon) musicIcon.classList.add('animate-spin-slow');
+                if (musicIconMobile) musicIconMobile.classList.add('animate-spin-slow');
+                if (musicIndicator) musicIndicator.classList.remove('hidden');
+                if (musicIndicatorMobile) musicIndicatorMobile.classList.remove('hidden');
+                if (musicTextMobile) musicTextMobile.textContent = 'Tạm dừng';
+                isPlaying = true;
+            }).catch(error => {
+                console.log("Audio play failed:", error);
+            });
+        }
+    };
+
     if (musicToggle && bgMusic) {
-        musicToggle.addEventListener('click', () => {
-            if (isPlaying) {
-                bgMusic.pause();
-                musicIcon.classList.remove('animate-spin-slow');
-                musicIndicator.classList.add('hidden');
-                isPlaying = false;
-            } else {
-                bgMusic.play().then(() => {
-                    musicIcon.classList.add('animate-spin-slow');
-                    musicIndicator.classList.remove('hidden');
-                    isPlaying = true;
-                }).catch(error => {
-                    console.log("Audio play failed:", error);
-                });
-            }
-        });
+        musicToggle.addEventListener('click', toggleMusic);
+    }
+
+    if (musicToggleMobile && bgMusic) {
+        musicToggleMobile.addEventListener('click', toggleMusic);
     }
 
     // Add to Calendar Logic
