@@ -163,18 +163,51 @@ document.addEventListener("DOMContentLoaded", () => {
   if (rsvpBackdrop) rsvpBackdrop.addEventListener("click", toggleRsvpModal);
 
   if (rsvpForm) {
-    rsvpForm.addEventListener("submit", (e) => {
+    rsvpForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       const name = document.getElementById("guest-name").value;
       const phone = document.getElementById("guest-phone").value;
+      const message = document.getElementById("guest-message").value;
+      const submitBtn = rsvpForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.innerHTML;
 
-      // Simulate submission
-      alert(
-        `Cảm ơn cô/chú ${name} đã xác nhận tham dự!\nGia đình bé Bia rất mong được đón tiếp.`
-      );
+      // Disable button during submission
+      submitBtn.disabled = true;
+      submitBtn.innerHTML =
+        '<span class="material-symbols-outlined text-lg md:text-xl animate-spin">hourglass_bottom</span><span>Đang gửi...</span>';
 
-      rsvpForm.reset();
-      toggleRsvpModal();
+      try {
+        // Send data to Google Sheet via Apps Script
+        const response = await fetch(
+          "https://script.google.com/macros/s/AKfycbwhEOhyWQOnLXAKbaYLVY3b1V4hdTcGZMNHoi9xKBKcw0yyN6tNtDFLip_76Oo-ONIF/exec",
+          {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: name,
+              phone: phone,
+              message: message,
+              timestamp: new Date().toLocaleString("vi-VN"),
+            }),
+          }
+        );
+
+        // Show success message
+        alert(
+          `Cảm ơn cô/chú ${name} đã xác nhận tham dự!\nGia đình bé Bia rất mong được đón tiếp.`
+        );
+
+        rsvpForm.reset();
+        toggleRsvpModal();
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        alert("Có lỗi xảy ra, vui lòng thử lại sau.");
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+      }
     });
   }
 
