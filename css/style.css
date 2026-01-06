@@ -282,3 +282,30 @@ body {
     transform: translateY(-8px) scale(1.02);
     box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2);
 }
+
+/* Bounce animation for "Bé Bia!" text */
+@keyframes bounce-cute {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    25% {
+        transform: translateY(-8px) scale(1.05);
+    }
+    50% {
+        transform: translateY(-4px) scale(1.02);
+    }
+    75% {
+        transform: translateY(-8px) scale(1.05);
+    }
+}
+
+.animate-bounce-cute {
+    animation: bounce-cute 2s ease-in-out infinite;
+    display: inline-block;
+}
+
+/* Enhanced beer icon animation */
+.beer-icon-animated {
+    animation: float-beer 3s ease-in-out infinite;
+    display: inline-block;
+}
