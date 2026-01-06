@@ -90,6 +90,94 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', toggleDrawer);
     });
 
+    // RSVP Modal Logic
+    const rsvpBtn = document.getElementById('rsvp-btn');
+    const rsvpModal = document.getElementById('rsvp-modal');
+    const closeRsvpBtn = document.getElementById('close-rsvp-btn');
+    const rsvpBackdrop = document.getElementById('rsvp-backdrop');
+    const rsvpForm = document.getElementById('rsvp-form');
+
+    const toggleRsvpModal = () => {
+        if (rsvpModal.classList.contains('hidden')) {
+            rsvpModal.classList.remove('hidden');
+            // Small delay to allow display:block to apply before opacity transition
+            setTimeout(() => {
+                rsvpModal.classList.remove('opacity-0');
+                rsvpModal.querySelector('div[class*="transform"]').classList.remove('scale-95');
+                rsvpModal.querySelector('div[class*="transform"]').classList.add('scale-100');
+            }, 10);
+        } else {
+            rsvpModal.classList.add('opacity-0');
+            rsvpModal.querySelector('div[class*="transform"]').classList.remove('scale-100');
+            rsvpModal.querySelector('div[class*="transform"]').classList.add('scale-95');
+            setTimeout(() => {
+                rsvpModal.classList.add('hidden');
+            }, 300); // Wait for transition
+        }
+    };
+
+    if (rsvpBtn) rsvpBtn.addEventListener('click', toggleRsvpModal);
+    if (closeRsvpBtn) closeRsvpBtn.addEventListener('click', toggleRsvpModal);
+    if (rsvpBackdrop) rsvpBackdrop.addEventListener('click', toggleRsvpModal);
+
+    if (rsvpForm) {
+        rsvpForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('guest-name').value;
+            const phone = document.getElementById('guest-phone').value;
+            
+            // Simulate submission
+            alert(`Cảm ơn cô/chú ${name} đã xác nhận tham dự!\nGia đình bé Bia rất mong được đón tiếp.`);
+            
+            rsvpForm.reset();
+            toggleRsvpModal();
+        });
+    }
+
+    // Music Player Logic
+    const musicToggle = document.getElementById('music-toggle');
+    const bgMusic = document.getElementById('bg-music');
+    const musicIcon = musicToggle.querySelector('span');
+    const musicIndicator = document.getElementById('music-indicator');
+    let isPlaying = false;
+
+    if (musicToggle && bgMusic) {
+        musicToggle.addEventListener('click', () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicIcon.classList.remove('animate-spin-slow');
+                musicIndicator.classList.add('hidden');
+                isPlaying = false;
+            } else {
+                bgMusic.play().then(() => {
+                    musicIcon.classList.add('animate-spin-slow');
+                    musicIndicator.classList.remove('hidden');
+                    isPlaying = true;
+                }).catch(error => {
+                    console.log("Audio play failed:", error);
+                });
+            }
+        });
+    }
+
+    // Add to Calendar Logic
+    const addToCalendarBtn = document.getElementById('add-to-calendar-btn');
+    if (addToCalendarBtn) {
+        addToCalendarBtn.addEventListener('click', () => {
+            const event = {
+                title: 'Sinh Nhật Bé Bia 1 Tuổi 🎂',
+                location: '143 Phúc Tân, Hoàn Kiếm, Hà Nội',
+                details: 'Mời cô chú đến dự tiệc thôi nôi của Bé Bia! Cùng chung vui với gia đình nhé.',
+                start: '20260111T180000',
+                end: '20260111T210000'
+            };
+            
+            const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${event.start}/${event.end}&details=${encodeURIComponent(event.details)}&location=${encodeURIComponent(event.location)}&ctz=Asia/Ho_Chi_Minh`;
+            
+            window.open(url, '_blank');
+        });
+    }
+
     // Scroll Spy
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');

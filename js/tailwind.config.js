@@ -10,7 +10,8 @@ tailwind.config = {
                 "accent": "#fff9db",
             },
             fontFamily: {
-                "display": ["Plus Jakarta Sans", "sans-serif"]
+                "display": ["Roboto", "sans-serif"],
+                "body": ["Roboto", "sans-serif"]
             },
             borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
         },

@@ -3,8 +3,10 @@
 
 /* Base Styles */
 body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
     overflow-x: hidden;
+    color: #422006;
+    /* Yellow-950 - Very Dark Warm Brown */
 }
 
 /* Custom Animations */
@@ -29,6 +31,20 @@ body {
 .float-animation-delay {
     animation: float 5s ease-in-out infinite;
     animation-delay: 1s;
+}
+
+@keyframes spin-slow {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-spin-slow {
+    animation: spin-slow 3s linear infinite;
 }
 
 /* Bubble Decoration */
