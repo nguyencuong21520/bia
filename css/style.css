@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+/* Base Styles */
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Custom Animations */
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(5deg);
+    }
+
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+.float-animation {
+    animation: float 4s ease-in-out infinite;
+}
+
+.float-animation-delay {
+    animation: float 5s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+/* Bubble Decoration */
+.bubble {
+    position: absolute;
+    background: rgba(244, 209, 37, 0.15);
+    border-radius: 50%;
+}
+
+/* Scroll Reveal Animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal-left.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal-right.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.8s ease-out;
+}
+
+.reveal-scale.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Hover Effects */
+.hover-lift {
+    transition: transform 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+}
+
+/* Glow Animation */
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(244, 209, 37, 0.4);
+        border-color: #fefce8;
+        /* yellow-50 */
+    }
+
+    50% {
+        box-shadow: 0 0 20px 0 rgba(244, 209, 37, 0.6);
+        border-color: #f4d125;
+        /* primary */
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(244, 209, 37, 0.4);
+        border-color: #fefce8;
+        /* yellow-50 */
+    }
+}
+
+.animate-glow {
+    animation: pulse-glow 3s infinite;
+}
+
+/* Navigation Styles */
+.nav-link.active-link {
+    color: #f4d125;
+    /* primary */
+}
+
+/* Drawer Styles */
+#drawer-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#mobile-drawer.open {
+    transform: translateX(0);
+}
+
+.drawer-link.active-link {
+    background-color: #fefce8;
+    /* yellow-50 */
+    color: #f4d125;
+    /* primary */
+}
+
+/* Button Styles */
+.btn-primary {
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    color: #1c190d;
+    border: 2px solid #fff;
+    box-shadow: 0 4px 15px rgba(246, 211, 101, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(246, 211, 101, 0.4);
+    filter: brightness(1.05);
+}
+
+/* Mobile Menu (Legacy - Removed) */

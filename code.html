@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html class="light" lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Mời Sinh Nhật Bé Bia 🍺</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet" />
+
+    <!-- Tailwind Config -->
+    <script src="js/tailwind.config.js"></script>
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-[#1c190d] font-display overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-30 w-full bg-[#fcfbf8]/90 backdrop-blur-md border-b border-[#f4f1e7]">
+        <div class="px-4 md:px-10 py-3 flex justify-center">
+            <div class="max-w-[960px] w-full flex items-center justify-between">
+                <div class="flex items-center gap-3 text-[#1c190d]">
+                    <div
+                        class="size-8 text-primary flex items-center justify-center bg-yellow-100 rounded-full hover-lift">
+                        <span class="material-symbols-outlined text-[20px]">cake</span>
+                    </div>
+                    <h2 class="text-[#1c190d] text-lg font-bold tracking-tight flex items-center gap-2">
+                        Sinh Nhật Bé Bia
+                        <span class="text-xl animate-bounce">🍺</span>
+                    </h2>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a class="nav-link text-sm font-bold text-gray-600 hover:text-primary transition-colors"
+                        href="#about">Về Bé</a>
+                    <a class="nav-link text-sm font-bold text-gray-600 hover:text-primary transition-colors"
+                        href="#party">Tiệc Sinh Nhật</a>
+                    <a class="nav-link text-sm font-bold text-gray-600 hover:text-primary transition-colors"
+                        href="#album">Album Ảnh</a>
+                    <a class="nav-link text-sm font-bold text-gray-600 hover:text-primary transition-colors"
+                        href="#wishes">Lời Chúc</a>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <button
+                        class="hidden md:flex btn-primary text-sm font-bold h-10 px-6 rounded-full items-center justify-center hover-lift">
+                        Gửi lời chúc
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn"
+                        class="md:hidden flex items-center justify-center size-10 rounded-full bg-yellow-50 text-primary hover:bg-yellow-100 transition-colors">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Side Drawer -->
+        <!-- Backdrop -->
+        <div id="drawer-backdrop"
+            class="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 md:hidden">
+        </div>
+
+        <!-- Drawer -->
+        <div id="mobile-drawer"
+            class="fixed top-0 right-0 z-50 h-full !h-[480px] max-w-[85vw] bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col">
+            <div class="p-6 flex items-center justify-between border-b border-gray-100">
+                <span class="font-bold text-lg">Menu</span>
+                <button id="close-drawer-btn"
+                    class="size-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-gray-100 transition-colors">
+                    <span class="material-symbols-outlined text-xl">close</span>
+                </button>
+            </div>
+
+            <div class="flex-1 overflow-y-auto py-6 px-6 flex flex-col gap-2">
+                <a class="drawer-link flex items-center gap-3 p-3 rounded-xl hover:bg-yellow-50 text-gray-600 hover:text-primary transition-colors font-bold"
+                    href="#about">
+                    <span class="material-symbols-outlined">child_care</span>
+                    Về Bé
+                </a>
+                <a class="drawer-link flex items-center gap-3 p-3 rounded-xl hover:bg-yellow-50 text-gray-600 hover:text-primary transition-colors font-bold"
+                    href="#party">
+                    <span class="material-symbols-outlined">celebration</span>
+                    Tiệc Sinh Nhật
+                </a>
+                <a class="drawer-link flex items-center gap-3 p-3 rounded-xl hover:bg-yellow-50 text-gray-600 hover:text-primary transition-colors font-bold"
+                    href="#album">
+                    <span class="material-symbols-outlined">photo_library</span>
+                    Album Ảnh
+                </a>
+                <a class="drawer-link flex items-center gap-3 p-3 rounded-xl hover:bg-yellow-50 text-gray-600 hover:text-primary transition-colors font-bold"
+                    href="#wishes">
+                    <span class="material-symbols-outlined">favorite</span>
+                    Lời Chúc
+                </a>
+            </div>
+
+            <div class="p-6 border-t border-gray-100">
+                <button
+                    class="w-full btn-primary text-sm font-bold h-12 rounded-xl flex items-center justify-center hover-lift gap-2">
+                    <span class="material-symbols-outlined">edit_square</span>
+                    Gửi lời chúc
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex flex-col items-center w-full">
+        <section id="about" class="relative w-full flex justify-center px-4 py-12 md:py-20 overflow-hidden">
+            <div class="bubble w-32 h-32 top-10 left-[-20px] md:left-20 animate-pulse"></div>
+            <div class="absolute top-16 left-4 md:left-32 z-0 float-animation w-16 h-16 md:w-20 md:h-20 opacity-90">
+                <svg class="w-full h-full drop-shadow-sm transform -rotate-12" viewBox="0 0 100 100">
+                    <path d="M28 35H72V72C72 82 64 90 54 90H46C36 90 28 82 28 72V35Z" fill="#facc15" stroke="#854d0e"
+                        stroke-width="3"></path>
+                    <path d="M72 45H78C84 45 88 49 88 55V60C88 66 84 70 78 70H72" stroke="#facc15"
+                        stroke-linecap="round" stroke-width="8"></path>
+                    <path d="M25 35C25 25 32 22 38 25C42 18 52 18 58 25C62 20 72 20 75 25C80 26 80 35 75 35H25Z"
+                        fill="white" stroke="#854d0e" stroke-width="3"></path>
+                    <circle cx="42" cy="55" fill="#451a03" r="4"></circle>
+                    <circle cx="58" cy="55" fill="#451a03" r="4"></circle>
+                    <path d="M46 62Q50 66 54 62" fill="none" stroke="#451a03" stroke-linecap="round" stroke-width="3">
+                    </path>
+                    <circle cx="36" cy="62" fill="#ef4444" fill-opacity="0.2" r="4"></circle>
+                    <circle cx="64" cy="62" fill="#ef4444" fill-opacity="0.2" r="4"></circle>
+                    <circle cx="35" cy="80" fill="white" fill-opacity="0.5" r="2"></circle>
+                    <circle cx="45" cy="75" fill="white" fill-opacity="0.5" r="1.5"></circle>
+                </svg>
+            </div>
+            <div class="bubble w-20 h-20 bottom-10 right-[-10px] md:right-20"></div>
+            <div class="bubble w-12 h-12 top-40 right-10 md:right-40 bg-yellow-200/30"></div>
+            <div
+                class="absolute bottom-16 right-6 md:right-32 z-0 float-animation-delay w-14 h-14 md:w-18 md:h-18 opacity-90">
+                <svg class="w-full h-full drop-shadow-sm transform rotate-12" viewBox="0 0 100 100">
+                    <path d="M28 35H72V72C72 82 64 90 54 90H46C36 90 28 82 28 72V35Z" fill="#facc15" stroke="#854d0e"
+                        stroke-width="3"></path>
+                    <path d="M72 45H78C84 45 88 49 88 55V60C88 66 84 70 78 70H72" stroke="#facc15"
+                        stroke-linecap="round" stroke-width="8"></path>
+                    <path d="M25 35C25 25 32 22 38 25C42 18 52 18 58 25C62 20 72 20 75 25C80 26 80 35 75 35H25Z"
+                        fill="white" stroke="#854d0e" stroke-width="3"></path>
+                    <circle cx="42" cy="55" fill="#451a03" r="4"></circle>
+                    <circle cx="58" cy="55" fill="#451a03" r="4"></circle>
+                    <path d="M46 62Q50 66 54 62" fill="none" stroke="#451a03" stroke-linecap="round" stroke-width="3">
+                    </path>
+                    <circle cx="36" cy="62" fill="#ef4444" fill-opacity="0.2" r="4"></circle>
+                    <circle cx="64" cy="62" fill="#ef4444" fill-opacity="0.2" r="4"></circle>
+                </svg>
+            </div>
+            <div class="max-w-[960px] w-full relative z-10">
+                <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+                    <div class="w-full md:w-1/2 flex justify-center relative reveal-scale">
+                        <div class="absolute inset-0 bg-primary/20 rounded-full blur-2xl transform scale-90"></div>
+                        <div
+                            class="relative w-full max-w-[400px] aspect-square rounded-full border-[8px] border-white shadow-xl overflow-hidden bg-gray-100">
+                            <img alt="Baby smiling brightly with a birthday hat"
+                                class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                                src="assets/images/avatar.png" />
+                        </div>
+                        <div
+                            class="absolute -bottom-6 bg-white px-8 py-3 rounded-[2rem] shadow-xl border-4 border-yellow-100 flex flex-col items-center justify-center z-20 hover-lift">
+                            <span class="text-5xl filter drop-shadow-sm mb-1">🕯️</span>
+                            <span class="font-black text-lg text-primary-dark leading-none">1 Tuổi</span>
+                        </div>
+                    </div>
+                    <div
+                        class="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left gap-6 reveal-right">
+                        <div class="space-y-2 relative">
+                            <div class="absolute -top-6 -right-8 animate-bounce hidden md:block w-10 h-10">
+                                <svg class="w-full h-full drop-shadow-sm transform rotate-6" viewBox="0 0 100 100">
+                                    <path d="M28 35H72V72C72 82 64 90 54 90H46C36 90 28 82 28 72V35Z" fill="#facc15"
+                                        stroke="#854d0e" stroke-width="3"></path>
+                                    <path d="M72 45H78C84 45 88 49 88 55V60C88 66 84 70 78 70H72" stroke="#facc15"
+                                        stroke-linecap="round" stroke-width="8"></path>
+                                    <path
+                                        d="M25 35C25 25 32 22 38 25C42 18 52 18 58 25C62 20 72 20 75 25C80 26 80 35 75 35H25Z"
+                                        fill="white" stroke="#854d0e" stroke-width="3"></path>
+                                    <circle cx="42" cy="55" fill="#451a03" r="4"></circle>
+                                    <circle cx="58" cy="55" fill="#451a03" r="4"></circle>
+                                    <path d="M46 62Q50 66 54 62" fill="none" stroke="#451a03" stroke-linecap="round"
+                                        stroke-width="3"></path>
+                                </svg>
+                            </div>
+                            <span
+                                class="inline-block px-3 py-1 bg-yellow-100 text-yellow-800 text-xs font-bold rounded-full uppercase tracking-wider">Thư
+                                Mời</span>
+                            <h1 class="text-4xl md:text-6xl font-black text-[#1c190d] leading-[1.1] tracking-tight">
+                                Mừng Sinh Nhật <br />
+                                <span class="text-primary drop-shadow-sm">Bé Bia!</span> 🍺
+                            </h1>
+                            <p class="text-lg text-gray-600 max-w-md pt-2">
+                                Mời cô chú đến dự tiệc thôi nôi của con. Cùng chung vui với gia đình và bé trong không
+                                gian ngập tràn màu sắc và niềm vui!
+                            </p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                            <button
+                                class="bg-primary hover:bg-primary-dark transition-all text-[#1c190d] h-14 px-8 rounded-full font-bold text-lg shadow-lg shadow-yellow-200/50 flex items-center justify-center gap-2 hover-lift">
+                                <span class="material-symbols-outlined">check_circle</span>
+                                Xác nhận tham dự
+                            </button>
+                            <button
+                                class="bg-white hover:bg-gray-50 border border-gray-200 text-[#1c190d] h-14 px-8 rounded-full font-bold text-lg shadow-sm flex items-center justify-center gap-2 hover-lift">
+                                <span class="material-symbols-outlined">map</span>
+                                Xem bản đồ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="w-full bg-[#fff9db] py-12 px-4 flex justify-center relative overflow-hidden">
+            <span
+                class="material-symbols-outlined absolute top-4 left-4 text-yellow-200/50 text-[100px] -rotate-12 float-animation">sports_bar</span>
+            <span
+                class="material-symbols-outlined absolute bottom-4 right-4 text-yellow-200/50 text-[100px] rotate-12 float-animation-delay">sports_bar</span>
+            <div class="max-w-[800px] w-full flex flex-col items-center gap-8 relative z-10 reveal">
+                <h3 class="text-xl font-bold text-[#1c190d] flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">timer</span>
+                    Đếm ngược đến giờ G
+                </h3>
+                <div class="grid grid-cols-4 gap-3 md:gap-8 w-full">
+                    <div class="flex flex-col items-center gap-2 relative group">
+                        <div
+                            class="absolute -top-6 w-8 h-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-bounce">
+                            <svg class="w-full h-full drop-shadow-sm" viewBox="0 0 100 100">
+                                <path d="M28 35H72V72C72 82 64 90 54 90H46C36 90 28 82 28 72V35Z" fill="#facc15"
+                                    stroke="#854d0e" stroke-width="3"></path>
+                                <path d="M72 45H78C84 45 88 49 88 55V60C88 66 84 70 78 70H72" stroke="#facc15"
+                                    stroke-linecap="round" stroke-width="8"></path>
+                                <path
+                                    d="M25 35C25 25 32 22 38 25C42 18 52 18 58 25C62 20 72 20 75 25C80 26 80 35 75 35H25Z"
+                                    fill="white" stroke="#854d0e" stroke-width="3"></path>
+                            </svg>
+                        </div>
+                        <div
+                            class="w-full aspect-square max-w-[100px] bg-white rounded-2xl md:rounded-3xl flex items-center justify-center shadow-sm border border-yellow-100 hover-lift animate-glow">
+                            <span id="days"
+                                class="text-3xl md:text-5xl font-black text-primary transition-all duration-300">05</span>
+                        </div>
+                        <span class="text-sm font-semibold uppercase tracking-wide opacity-60">Ngày</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <div
+                            class="w-full aspect-square max-w-[100px] bg-white rounded-2xl md:rounded-3xl flex items-center justify-center shadow-sm border border-yellow-100 hover-lift animate-glow">
+                            <span id="hours"
+                                class="text-3xl md:text-5xl font-black text-primary transition-all duration-300">12</span>
+                        </div>
+                        <span class="text-sm font-semibold uppercase tracking-wide opacity-60">Giờ</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <div
+                            class="w-full aspect-square max-w-[100px] bg-white rounded-2xl md:rounded-3xl flex items-center justify-center shadow-sm border border-yellow-100 hover-lift animate-glow">
+                            <span id="minutes"
+                                class="text-3xl md:text-5xl font-black text-primary transition-all duration-300">30</span>
+                        </div>
+                        <span class="text-sm font-semibold uppercase tracking-wide opacity-60">Phút</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <div
+                            class="w-full aspect-square max-w-[100px] bg-white rounded-2xl md:rounded-3xl flex items-center justify-center shadow-sm border border-yellow-100 hover-lift animate-glow">
+                            <span id="seconds"
+                                class="text-3xl md:text-5xl font-black text-primary transition-all duration-300">00</span>
+                        </div>
+                        <span class="text-sm font-semibold uppercase tracking-wide opacity-60">Giây</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="party" class="w-full py-16 px-4 flex justify-center">
+            <div class="max-w-[960px] w-full flex flex-col gap-10">
+                <div class="text-center space-y-3 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#1c190d] flex items-center justify-center gap-3">
+                        <span class="material-symbols-outlined text-primary text-4xl animate-bounce">celebration</span>
+                        Thông Tin Bữa Tiệc
+                        <span class="material-symbols-outlined text-primary text-4xl animate-bounce">celebration</span>
+                    </h2>
+                    <p class="text-gray-500 max-w-2xl mx-auto">Hẹn gặp cô chú tại bữa tiệc ấm cúng của gia đình. Bé Bia
+                        đã chuẩn bị rất nhiều điều bất ngờ cho mọi người đấy!</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div
+                        class="h-full bg-white border border-[#e8e4ce] rounded-3xl p-8 shadow-sm flex flex-col justify-center relative overflow-hidden reveal-left hover-lift">
+                        <div
+                            class="absolute top-0 right-0 w-32 h-32 bg-yellow-100 rounded-full blur-2xl opacity-50 -translate-y-1/2 translate-x-1/2">
+                        </div>
+                        <div class="relative z-10 flex flex-col gap-4 h-full">
+                            <div
+                                class="size-12 rounded-full bg-yellow-50 flex items-center justify-center text-primary mb-2">
+                                <span class="material-symbols-outlined text-[28px]">mark_email_read</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-[#1c190d]">Thư Mời</h3>
+                            <p class="text-gray-600 leading-relaxed text-lg flex-1">
+                                Gia đình bé Bia trân trọng kính mời các cô, các chú, và các bạn nhỏ đến dự tiệc thôi nôi
+                                của cháu. Sự hiện diện của mọi người là món quà tuyệt vời nhất, mang đến niềm vui trọn
+                                vẹn cho buổi tiệc sinh nhật đầu đời của Bia.
+                            </p>
+                            <div class="pt-4 border-t border-dashed border-gray-100 flex items-center gap-3">
+                                <div class="flex -space-x-3">
+                                    <img class="w-8 h-8 rounded-full border-2 border-white"
+                                        src="assets/images/avatar-1.jpg" />
+                                    <img class="w-8 h-8 rounded-full border-2 border-white"
+                                        src="assets/images/avatar-2.jpg" />
+                                </div>
+                                <span class="text-sm font-bold text-gray-500">Gia đình Bé Bia</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-6 reveal-right">
+                        <div
+                            class="group bg-white border border-[#e8e4ce] hover:border-primary/50 transition-all duration-300 rounded-2xl p-6 flex flex-row gap-6 shadow-sm hover:shadow-md relative overflow-hidden items-center hover-lift">
+                            <div
+                                class="size-14 rounded-full bg-yellow-50 flex items-center justify-center text-primary shrink-0 group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-[28px]">schedule</span>
+                            </div>
+                            <div class="relative z-10 flex-1">
+                                <h3 class="text-lg font-bold text-[#1c190d]">Thời Gian</h3>
+                                <div class="flex items-baseline gap-2 mt-1">
+                                    <span class="text-primary font-bold text-xl">18:00</span>
+                                    <span class="text-gray-600">- Thứ 7, Ngày 11/01</span>
+                                </div>
+                                <button
+                                    class="mt-2 text-xs font-semibold text-primary hover:text-primary-dark flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-sm">calendar_add_on</span>
+                                    Thêm vào lịch
+                                </button>
+                            </div>
+                            <div class="absolute top-2 right-2 opacity-10 transform rotate-12">
+                                <span class="material-symbols-outlined text-[60px] text-primary">sports_bar</span>
+                            </div>
+                        </div>
+                        <div
+                            class="group bg-white border border-[#e8e4ce] hover:border-primary/50 transition-all duration-300 rounded-2xl p-6 flex flex-row gap-6 shadow-sm hover:shadow-md relative overflow-hidden items-center hover-lift">
+                            <div
+                                class="size-14 rounded-full bg-yellow-50 flex items-center justify-center text-primary shrink-0 group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-[28px]">location_on</span>
+                            </div>
+                            <div class="relative z-10 flex-1">
+                                <h3 class="text-lg font-bold text-[#1c190d]">Địa Điểm</h3>
+                                <p class="text-gray-900 font-medium mt-1 text-lg">143 Phúc Tân</p>
+                                <p class="text-gray-500 text-sm">Hoàn Kiếm, Hà Nội</p>
+                            </div>
+                            <div class="absolute top-2 right-2 opacity-10 transform rotate-12">
+                                <span class="material-symbols-outlined text-[60px] text-primary">map</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="w-full px-4 pb-16 flex justify-center">
+            <div class="max-w-[960px] w-full reveal-scale">
+                <div class="bg-white p-2 rounded-3xl border border-[#e8e4ce] shadow-sm">
+                    <div
+                        class="relative w-full aspect-video md:aspect-[21/9] rounded-2xl overflow-hidden bg-gray-100 group">
+                        <div
+                            class="absolute inset-0 flex items-center justify-center bg-black/5 group-hover:bg-black/0 transition-colors z-10 pointer-events-none">
+                        </div>
+                        <img alt="Map view of Hanoi city streets"
+                            class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-500"
+                            data-location="Hanoi, Vietnam" src="assets/images/map.jpg" />
+                        <div
+                            class="absolute bottom-4 left-4 bg-white/90 backdrop-blur px-4 py-2 rounded-xl border border-gray-200 shadow-sm flex items-center gap-2 z-20">
+                            <span class="material-symbols-outlined text-red-500">place</span>
+                            <span class="text-sm font-semibold">143 Phúc Tân, Hoàn Kiếm</span>
+                        </div>
+                        <a aria-label="Open Map" class="absolute inset-0 z-30"
+                            href="https://maps.google.com/?q=143+Phúc+Tân,+Hoàn+Kiếm,+Hà+Nội" target="_blank"></a>
+                    </div>
+                    <div class="p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="flex items-center gap-3">
+                            <div class="size-10 rounded-full bg-gray-100 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-gray-600">directions_car</span>
+                            </div>
+                            <div>
+                                <p class="font-bold text-sm">Hướng dẫn đường đi</p>
+                                <p class="text-xs text-gray-500">Bấm vào bản đồ để mở Google Maps</p>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full sm:w-auto px-5 py-2.5 rounded-full border border-gray-300 text-sm font-semibold hover:bg-gray-50 transition-colors hover-lift">
+                            Sao chép địa chỉ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="album" class="w-full px-4 pb-20 flex justify-center">
+            <div class="max-w-[960px] w-full bg-[#fffcf0] rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden reveal">
+                <div
+                    class="absolute top-0 right-0 w-64 h-64 bg-yellow-200 rounded-full blur-3xl opacity-20 translate-x-1/2 -translate-y-1/2">
+                </div>
+                <div
+                    class="absolute bottom-0 left-0 w-48 h-48 bg-yellow-300 rounded-full blur-3xl opacity-20 -translate-x-1/2 translate-y-1/2">
+                </div>
+                <div class="absolute -bottom-2 -left-2 w-24 h-24 transform rotate-12 opacity-80 hidden md:block">
+                    <svg class="w-full h-full drop-shadow-sm" viewBox="0 0 100 100">
+                        <path d="M28 35H72V72C72 82 64 90 54 90H46C36 90 28 82 28 72V35Z" fill="#facc15"
+                            stroke="#854d0e" stroke-width="3"></path>
+                        <path d="M72 45H78C84 45 88 49 88 55V60C88 66 84 70 78 70H72" stroke="#facc15"
+                            stroke-linecap="round" stroke-width="8"></path>
+                        <path d="M25 35C25 25 32 22 38 25C42 18 52 18 58 25C62 20 72 20 75 25C80 26 80 35 75 35H25Z"
+                            fill="white" stroke="#854d0e" stroke-width="3"></path>
+                        <circle cx="42" cy="55" fill="#451a03" r="4"></circle>
+                        <circle cx="58" cy="55" fill="#451a03" r="4"></circle>
+                        <path d="M46 62Q50 66 54 62" fill="none" stroke="#451a03" stroke-linecap="round"
+                            stroke-width="3"></path>
+                        <circle cx="36" cy="62" fill="#ef4444" fill-opacity="0.2" r="4"></circle>
+                        <circle cx="64" cy="62" fill="#ef4444" fill-opacity="0.2" r="4"></circle>
+                    </svg>
+                </div>
+                <div class="relative z-10 flex flex-col items-center gap-8">
+                    <h2 class="text-2xl md:text-3xl font-bold text-center">Những Khoảnh Khắc Của Bia 📸</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 w-full">
+                        <div
+                            class="aspect-square rounded-2xl overflow-hidden bg-gray-200 hover:rotate-2 transition-transform duration-300 border-4 border-white shadow-sm hover-lift">
+                            <img class="w-full h-full object-cover" data-alt="Baby laughing while playing with toys"
+                                src="assets/images/gallery-1.jpg" />
+                        </div>
+                        <div
+                            class="aspect-square rounded-2xl overflow-hidden bg-gray-200 hover:-rotate-2 transition-transform duration-300 border-4 border-white shadow-sm hover-lift">
+                            <img class="w-full h-full object-cover" data-alt="Baby sleeping peacefully in a crib"
+                                src="assets/images/gallery-2.jpg" />
+                        </div>
+                        <div
+                            class="aspect-square rounded-2xl overflow-hidden bg-gray-200 hover:rotate-2 transition-transform duration-300 border-4 border-white shadow-sm hover-lift">
+                            <img class="w-full h-full object-cover" data-alt="Baby taking first steps outdoors"
+                                src="assets/images/gallery-3.jpg" />
+                        </div>
+                        <div
+                            class="aspect-square rounded-2xl overflow-hidden bg-gray-200 hover:-rotate-2 transition-transform duration-300 border-4 border-white shadow-sm hover-lift">
+                            <img class="w-full h-full object-cover" data-alt="Baby with birthday cake smash"
+                                src="assets/images/gallery-4.jpg" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="wishes" class="w-full px-4 pb-8 flex justify-center">
+            <div class="max-w-[960px] w-full border-t border-[#f4f1e7] pt-8">
+                <div
+                    class="bg-white rounded-[2rem] p-6 md:p-8 shadow-sm border border-yellow-100 flex flex-col gap-8 reveal">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="flex flex-col gap-2 text-center md:text-left">
+                            <h3
+                                class="text-xl font-bold text-[#1c190d] flex items-center justify-center md:justify-start gap-2">
+                                Gửi Lời Chúc Đến Bé Bia
+                                <span class="text-2xl animate-pulse">💌</span>
+                            </h3>
+                            <p class="text-gray-500 text-sm max-w-md">Những lời chúc của cô chú sẽ được lưu lại làm kỷ
+                                niệm cho bé sau này.</p>
+                        </div>
+                        <div class="flex flex-col w-full md:w-auto gap-3">
+                            <div class="flex gap-2">
+                                <input
+                                    class="flex-1 min-w-[200px] md:min-w-[300px] h-12 px-4 rounded-xl border border-gray-200 focus:border-primary focus:ring-primary bg-gray-50"
+                                    placeholder="Nhập lời chúc của bạn..." type="text" />
+                                <button
+                                    class="bg-primary hover:bg-primary-dark text-[#1c190d] font-bold h-12 px-6 rounded-xl whitespace-nowrap transition-colors shadow-sm hover-lift">
+                                    Gửi Ngay
+                                </button>
+                            </div>
+                            <div class="flex items-center gap-2 overflow-hidden">
+                                <div class="flex -space-x-2">
+                                    <div
+                                        class="size-8 rounded-full bg-blue-100 border-2 border-white flex items-center justify-center text-xs font-bold text-blue-600">
+                                        A</div>
+                                    <div
+                                        class="size-8 rounded-full bg-pink-100 border-2 border-white flex items-center justify-center text-xs font-bold text-pink-600">
+                                        B</div>
+                                    <div
+                                        class="size-8 rounded-full bg-green-100 border-2 border-white flex items-center justify-center text-xs font-bold text-green-600">
+                                        C</div>
+                                </div>
+                                <span class="text-xs text-gray-400">+128 lời chúc đã gửi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 border-t border-gray-100 pt-6">
+                        <div
+                            class="bg-yellow-50/50 p-4 rounded-xl border border-yellow-100 flex gap-3 items-start hover-lift">
+                            <div
+                                class="size-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-sm shrink-0">
+                                H</div>
+                            <div>
+                                <p class="text-xs font-bold text-gray-800">Hoàng Anh</p>
+                                <p class="text-sm text-gray-600 mt-1">Chúc bé Bia hay ăn chóng lớn, luôn vui vẻ và mạnh
+                                    khỏe nhé!</p>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-yellow-50/50 p-4 rounded-xl border border-yellow-100 flex gap-3 items-start hover-lift">
+                            <div
+                                class="size-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 font-bold text-sm shrink-0">
+                                L</div>
+                            <div>
+                                <p class="text-xs font-bold text-gray-800">Cô Lan</p>
+                                <p class="text-sm text-gray-600 mt-1">Tuổi mới thật nhiều niềm vui con nhé. Yêu Bia
+                                    nhiều ❤️</p>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-yellow-50/50 p-4 rounded-xl border border-yellow-100 flex gap-3 items-start hover-lift">
+                            <div
+                                class="size-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold text-sm shrink-0">
+                                T</div>
+                            <div>
+                                <p class="text-xs font-bold text-gray-800">Chú Tuấn</p>
+                                <p class="text-sm text-gray-600 mt-1">Sinh nhật vui vẻ nhé chàng trai! Hẹn gặp con vào
+                                    thứ 7.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="w-full relative bg-white pt-20 pb-8 mt-10">
+            <!-- Wave SVG -->
+            <div class="absolute top-0 left-0 w-full overflow-hidden leading-[0]">
+                <svg class="relative block w-[calc(100%+1.3px)] h-[50px] md:h-[100px]" data-name="Layer 1"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path
+                        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                        class="fill-[#fffcf0]"></path>
+                </svg>
+            </div>
+
+            <div class="max-w-[960px] w-full mx-auto px-4 flex flex-col items-center gap-6 text-center relative z-10">
+                <div class="flex items-center gap-3 text-[#1c190d] font-bold text-2xl">
+                    <span class="material-symbols-outlined text-primary text-3xl animate-bounce">cake</span>
+                    <span>Sinh Nhật Bé Bia</span>
+                    <span class="material-symbols-outlined text-primary text-3xl animate-bounce"
+                        style="animation-delay: 0.5s">sports_bar</span>
+                </div>
+
+                <p class="text-gray-500 max-w-md">
+                    Cảm ơn các cô chú đã dành thời gian ghé thăm và gửi lời chúc đến bé. <br>
+                    Hẹn gặp mọi người tại bữa tiệc nhé! ❤️
+                </p>
+
+                <div class="flex gap-4 mt-2">
+                    <a href="#"
+                        class="size-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center hover:bg-blue-100 transition-colors hover-lift">
+                        <span class="material-symbols-outlined text-xl">thumb_up</span>
+                    </a>
+                    <a href="#"
+                        class="size-10 rounded-full bg-pink-50 text-pink-600 flex items-center justify-center hover:bg-pink-100 transition-colors hover-lift">
+                        <span class="material-symbols-outlined text-xl">favorite</span>
+                    </a>
+                    <a href="#"
+                        class="size-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center hover:bg-green-100 transition-colors hover-lift">
+                        <span class="material-symbols-outlined text-xl">share</span>
+                    </a>
+                </div>
+
+                <div class="w-full h-px bg-gray-100 my-4"></div>
+
+                <div class="text-xs text-gray-400 flex flex-col md:flex-row items-center gap-2">
+                    <span>© 2024 Gia đình bé Bia</span>
+                    <span class="hidden md:inline">•</span>
+                    <span>Made with 💛 by Dad & Mom</span>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Main Script -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
